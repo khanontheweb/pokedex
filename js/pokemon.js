@@ -31,7 +31,7 @@ class Pokemon {
     }
 }
 
-function makePokemon(id, team) {
+function makeAJAXCallPokemon(id, team) {
 
     let xhr = new XMLHttpRequest;
     var string = 'http://fizal.me/pokeapi/api/v2/id/' + id + '.json'
@@ -39,9 +39,23 @@ function makePokemon(id, team) {
     xhr.onload = function() {
     if(this.status == 200 && this.readyState == 4) {
         var pokemonJSON = JSON.parse(this.responseText);
+        makePokemon(pokemonJSON, team);
+        
+        }
+        
+    };
+    xhr.send();
+}
+
+function makePokemon(pokemonJSON, team) {
         var id = pokemonJSON.id;
         var name = pokemonJSON.name.charAt(0).toUpperCase() + pokemonJSON.name.slice(1);
-        var abilities = pokemonJSON.abilities;
+        var abilities = []; 
+        for(var i = 0; i< pokemonJSON.abilities.length; i++) {
+            var ability = pokemonJSON.abilities[i].ability.name.charAt(0).toUpperCase+pokemonJSON.name.slice(1);
+            abilities.push(ability);    
+        }
+        
         var sprite = pokemonJSON.sprites.front_default;
         var stats = {
             defense: pokemonJSON.stats[3].base_stat,
@@ -49,10 +63,6 @@ function makePokemon(id, team) {
             hp: pokemonJSON.stats[5].base_stat
             };
         new Pokemon(id, name, abilities, sprite, stats, team);
-        }
-        
-    };
-    xhr.send();
 }
 
 

@@ -1,5 +1,5 @@
 var momo = new Trainer('Momo');
-makePokemon(1, momo.team);
+makeAJAXCallPokemon(1, momo.team);
 
 
 

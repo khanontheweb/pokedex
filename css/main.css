@@ -1,10 +1,15 @@
-.container {
-  max-width: 70%;
-  margin: auto;
+nav {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  justify-content: center;
+  display: flex;
 }
-
 nav li {
   display: inline;
+}
+nav ul {
+  padding: 0;
 }
 
 /*# sourceMappingURL=main.css.map */

@@ -2,16 +2,21 @@ $pokemon-size: 25%;
 $trainer-size: 25%;
 $column-gap: 0;
 
-.container {
-    max-width: 70%;
-    margin: auto;
 
-}
 
 nav {
-    
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+    display: flex;
+
     li {
-        display: inline;
+        display:inline;
+    }
+
+    ul {
+        padding: 0;
     }
 }
 
