@@ -1,4 +1,4 @@
-var mainGrid = document.getElementsByClassName('container')[0];
+/*var mainGrid = document.getElementsByClassName('container')[0];
 
 for(var i = 0; i < momo.team.length; i++) {
     let div = document.createElement('div');
@@ -7,4 +7,6 @@ for(var i = 0; i < momo.team.length; i++) {
     div.appendChild(img);
     div.classList.add('col', 's4');
     mainGrid.appendChild(div);
-}
+}*/
+
+
