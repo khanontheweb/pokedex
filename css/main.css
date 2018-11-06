@@ -35,11 +35,25 @@ body {
   padding: 0;
 }
 
+nav {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  justify-content: center;
+  display: flex;
+}
+nav li {
+  display: inline;
+}
+nav ul {
+  padding: 0;
+}
+
 .cover {
-  -webkit-animation-duration: 0.6s;
-  -moz-animation-duration: 0.6s;
-  -o-animation-duration: 0.6s;
-  animation-duration: 0.6s;
+  -webkit-animation-duration: 2s;
+  -moz-animation-duration: 2s;
+  -o-animation-duration: 2s;
+  animation-duration: 2s;
   -webkit-animation-iteration-count: 1;
   -moz-animation-iteration-count: 1;
   -o-animation-iteration-count: 1;
@@ -57,23 +71,14 @@ body {
   -o-animation-fill-mode: forwards;
   animation-fill-mode: forwards;
   background-color: black;
-  z-index: 1;
   height: 100vh;
   width: 100vw;
+  position: absolute;
+  top: 0;
 }
 
-nav {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  justify-content: center;
-  display: flex;
-}
-nav li {
-  display: inline;
-}
-nav ul {
-  padding: 0;
+#logo {
+  width: 50%;
 }
 
 /*# sourceMappingURL=main.css.map */
