@@ -1,0 +1,55 @@
+@mixin animate($name, $duration, $iteration, $direction, $fill-mode) {
+	-webkit-animation-duration: $duration;
+	   -moz-animation-duration: $duration;
+	     -o-animation-duration: $duration;
+		    animation-duration: $duration;
+
+	-webkit-animation-iteration-count: $iteration;
+	   -moz-animation-iteration-count: $iteration;
+	     -o-animation-iteration-count: $iteration;
+	        animation-iteration-count: $iteration;
+
+	-webkit-animation-name: $name;
+	   -moz-animation-name: $name;
+	     -o-animation-name: $name;
+	        animation-name: $name;
+
+	-webkit-animation-direction: $direction;
+	   -moz-animation-direction: $direction;
+	     -o-animation-direction: $direction;
+            animation-direction: $direction;
+            
+    -webkit-animation-fill-mode: $fill-mode;
+	   -moz-animation-fill-mode: $fill-mode;
+	     -o-animation-fill-mode: $fill-mode;
+		    animation-fill-mode: $fill-mode;
+}
+
+@mixin keyframes($animationName) {
+    @-webkit-keyframes #{$animationName} {
+        @content;
+    }
+    @-moz-keyframes #{$animationName} {
+        @content;
+    }
+    @-o-keyframes #{$animationName} {
+        @content;
+    }
+    @keyframes #{$animationName} {
+        @content;
+    }
+}
+
+@include keyframes(fade) {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+@mixin fade {
+    @include animate(fade, 2s, 1, normal, forwards);
+}
