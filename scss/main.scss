@@ -25,7 +25,7 @@ nav {
 
 
 .cover {
-    @include fade;
+    @include fadeOut;
     background-color: black;
     height:100vh;
     width:100vw;
@@ -34,8 +34,16 @@ nav {
 }
 
 #logo {
+    @include fadeIn;
+    opacity: 0;
     width: 50%;   
-    margin-left: 25%;
+    margin-left: 25%;   
+}
+
+#team {
+    img {
+        margin-left: 38%;
+    }
 }
 
 

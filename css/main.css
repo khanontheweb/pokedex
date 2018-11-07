@@ -1,4 +1,4 @@
-@-webkit-keyframes fade {
+@-webkit-keyframes fadeOut {
   from {
     opacity: 1;
   }
@@ -6,7 +6,7 @@
     opacity: 0;
   }
 }
-@-moz-keyframes fade {
+@-moz-keyframes fadeOut {
   from {
     opacity: 1;
   }
@@ -14,7 +14,7 @@
     opacity: 0;
   }
 }
-@-o-keyframes fade {
+@-o-keyframes fadeOut {
   from {
     opacity: 1;
   }
@@ -22,12 +22,44 @@
     opacity: 0;
   }
 }
-@keyframes fade {
+@keyframes fadeOut {
   from {
     opacity: 1;
   }
   to {
     opacity: 0;
+  }
+}
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-moz-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-o-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
 body {
@@ -58,10 +90,10 @@ nav ul {
   -moz-animation-iteration-count: 1;
   -o-animation-iteration-count: 1;
   animation-iteration-count: 1;
-  -webkit-animation-name: fade;
-  -moz-animation-name: fade;
-  -o-animation-name: fade;
-  animation-name: fade;
+  -webkit-animation-name: fadeOut;
+  -moz-animation-name: fadeOut;
+  -o-animation-name: fadeOut;
+  animation-name: fadeOut;
   -webkit-animation-direction: normal;
   -moz-animation-direction: normal;
   -o-animation-direction: normal;
@@ -70,6 +102,10 @@ nav ul {
   -moz-animation-fill-mode: forwards;
   -o-animation-fill-mode: forwards;
   animation-fill-mode: forwards;
+  -webkit-animation-delay: 0;
+  -moz-animation-delay: 0;
+  -o-animation-dealy: 0;
+  animation-delay: 0;
   background-color: black;
   height: 100vh;
   width: 100vw;
@@ -78,8 +114,37 @@ nav ul {
 }
 
 #logo {
+  -webkit-animation-duration: 0.75s;
+  -moz-animation-duration: 0.75s;
+  -o-animation-duration: 0.75s;
+  animation-duration: 0.75s;
+  -webkit-animation-iteration-count: 1;
+  -moz-animation-iteration-count: 1;
+  -o-animation-iteration-count: 1;
+  animation-iteration-count: 1;
+  -webkit-animation-name: fadeIn;
+  -moz-animation-name: fadeIn;
+  -o-animation-name: fadeIn;
+  animation-name: fadeIn;
+  -webkit-animation-direction: normal;
+  -moz-animation-direction: normal;
+  -o-animation-direction: normal;
+  animation-direction: normal;
+  -webkit-animation-fill-mode: forwards;
+  -moz-animation-fill-mode: forwards;
+  -o-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+  -webkit-animation-delay: 1s;
+  -moz-animation-delay: 1s;
+  -o-animation-dealy: 1s;
+  animation-delay: 1s;
+  opacity: 0;
   width: 50%;
   margin-left: 25%;
+}
+
+#team img {
+  margin-left: 38%;
 }
 
 /*# sourceMappingURL=main.css.map */

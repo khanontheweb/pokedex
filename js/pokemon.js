@@ -40,7 +40,6 @@ function makeAJAXCallPokemon(id, team) {
     if(this.status == 200 && this.readyState == 4) {
         var pokemonJSON = JSON.parse(this.responseText);
         makePokemon(pokemonJSON, team);
-        
         }
         
     };
@@ -64,6 +63,17 @@ function makePokemon(pokemonJSON, team) {
             hp: pokemonJSON.stats[5].base_stat
             };
         new Pokemon(id, name, abilities, sprite, stats, team);
+        writeToTeam(sprite);
+}
+
+function writeToTeam(sprite) {
+    let teamCol = document.createElement('div')
+    teamCol.classList.add('col-sm-4');
+    let pokemon = document.createElement('img');
+    pokemon.src = sprite;
+    pokemon.classList.add('img-fluid');
+    teamCol.appendChild(pokemon);
+    document.getElementById('team').appendChild(teamCol);
 }
 
 
