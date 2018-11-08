@@ -86,35 +86,18 @@ function drawSprite(pokemon) {
     document.getElementById('team').appendChild(teamCol);
 }
 
-function makeCollapsibleCard(pokemon) {
+function makeNavCard(pokemon) {
 
     //make the card container
     let card = document.createElement('div');
     card.classList.add('card');
 
-    //add the card header to the card 
-    card.appendChild(makeCardButton(pokemon));
-    
-
-    //make the card image
-   /* let cardImage = document.createElement('img');
-    cardImage.classList.add('card-image-top');
-    cardImage.src = pokemon.sprite;
-    //append the image to the card
-    card.appendChild(cardImage);*/
-
-    let collapsiblePokemon = document.createElement('div');
-    collapsiblePokemon.setAttribute('id', (pokemon.name).toLowerCase());
-    collapsiblePokemon.classList.add('collapse');
-    collapsiblePokemon.setAttribute('aria-labelledby', 'pokemon'+pokemon.id);
-    collapsiblePokemon.setAttribute('data-parent', '#pokemon-accordion');
-    //make div child with card body 
     let cardBody = document.createElement('div');
     cardBody.classList.add('card-body');
     
-    cardBody.innerHTML = 'hello world pt2 electric boogaloo';
-    collapsiblePokemon.appendChild(cardBody);
-    card.appendChild(collapsiblePokemon);
+    let cardHeader = document.createElement('h2');
+    cardHeader.classList.add('card-titlle');
+    cardHeader.innerHTML = pokemon.name;
 
     //make a list group with with stats of pokemon
     let listGroup = document.createElement('ul');
@@ -166,6 +149,38 @@ function makeCardButton(pokemon) {
     //append div to card HAPPENS OUTSIDE OF FUNCTION
     return cardHeader;
 }
+
+
+function makeTab(pokemon) {
+    let navItem = document.createElement('li');
+    navItem.classList.add('nav-item');
+
+    let anchor = document.createElement('a');
+    anchor.classList.add('nav-link');
+    anchor.setAttribute('id', (pokemon.name).toLowerCase()+'-tab');
+    anchor.setAttribute('data-toggle', 'tab');
+    anchor.setAttribute('href', '#'+(pokemon.name).toLowerCase());
+    anchor.setAttribute('role', 'tab');
+    anchor.setAttribute('aria-selected', 'true');
+
+    let tabImage = document.createElement('img');
+    tabImage.src = pokemon.sprite;
+
+    anchor.appendChild(tabImage);
+    navItem.appendChild(anchor);
+}
+
+function makeTabContent(pokemon) {
+    let tabPane = document.createElement('div');
+    tabPane.classList.add('tab-pane', 'fade');
+    tabPane.setAttribute('id', (pokemon.name).toLowerCase());
+    tabPane.setAttribute('role', 'tabpanel');
+    tabPane.setAttribute('aria-labelledby' (pokemon.name).toLowerCase()+'-tab');
+
+
+}
+
+
 
 
 
