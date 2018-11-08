@@ -151,7 +151,7 @@ function makeCardButton(pokemon) {
     let cardButton = document.createElement('img');
     cardButton.src = pokemon.sprite;
     cardButton.classList.add('btn');
-
+    
     cardButton.setAttribute('type', 'button');
     cardButton.setAttribute('data-toggle', 'collapse');
     cardButton.setAttribute('data-target', '#' + (pokemon.name).toLowerCase());
