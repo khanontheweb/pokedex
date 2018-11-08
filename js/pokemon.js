@@ -148,9 +148,10 @@ function makeCardButton(pokemon) {
     header.classList.add('mb-0');
 
     //button.btn.btn-link type = button data-toggle =collapse data-target=#pokemonname aria expanded = false ariacontrols=pokemonname
-    let cardButton = document.createElement('button');
+    let cardButton = document.createElement('img');
+    cardButton.src = pokemon.sprite;
     cardButton.classList.add('btn');
-    cardButton.classList.add('btn-link');
+
     cardButton.setAttribute('type', 'button');
     cardButton.setAttribute('data-toggle', 'collapse');
     cardButton.setAttribute('data-target', '#' + (pokemon.name).toLowerCase());
