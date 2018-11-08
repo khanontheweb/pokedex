@@ -89,7 +89,7 @@ function drawSprite(pokemon) {
 function makeCollapsibleCard(pokemon) {
     //make the collapse with the id of the pokemon
     let cardContainer = document.createElement('div');
-    //cardContainer.classList.add('collapse');
+    cardContainer.classList.add('collapse');
     cardContainer.classList.add('col-sm-12')
     cardContainer.setAttribute('id', (pokemon.name).toLowerCase());
 
@@ -139,7 +139,7 @@ function makeCollapsibleCard(pokemon) {
     cardBody.appendChild(cardHeader);
     cardBody.appendChild(listGroup);
 
-    document.getElementById('cards').appendChild(cardContainer);
+    document.getElementById('pokemon-accordion').appendChild(cardContainer);
 
     
 }
@@ -148,7 +148,6 @@ function makeCollapsibleCard(pokemon) {
 function makeCardButton(pokemon) {
     let cardButton = document.createElement('a');
     cardButton.classList.add('btn');
-    cardButton.classList.add('btn-primary');
     cardButton.setAttribute('data-toggle', 'collapse');
     cardButton.setAttribute('href', '#' + (pokemon.name).toLowerCase());
     cardButton.setAttribute('role', 'button');

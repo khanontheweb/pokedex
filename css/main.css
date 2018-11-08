@@ -4,6 +4,7 @@
   }
   to {
     opacity: 0;
+    visibility: hidden;
   }
 }
 @-moz-keyframes fadeOut {
@@ -12,6 +13,7 @@
   }
   to {
     opacity: 0;
+    visibility: hidden;
   }
 }
 @-o-keyframes fadeOut {
@@ -20,6 +22,7 @@
   }
   to {
     opacity: 0;
+    visibility: hidden;
   }
 }
 @keyframes fadeOut {
@@ -28,6 +31,7 @@
   }
   to {
     opacity: 0;
+    visibility: hidden;
   }
 }
 @-webkit-keyframes fadeIn {
