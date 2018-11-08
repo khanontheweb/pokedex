@@ -48,12 +48,12 @@ function makeAJAXCallPokemon(id, team) {
 }
 
 function makePokemon(pokemonJSON, team) {
+        console.log(pokemonJSON);
         var id = pokemonJSON.id;
         var name = pokemonJSON.name.charAt(0).toUpperCase() + pokemonJSON.name.slice(1);
         var abilities = []; 
         for(var i = 0; i< pokemonJSON.abilities.length; i++) {
-            var ability = pokemonJSON.abilities[i].ability.name.charAt(0).toUpperCase()+pokemonJSON.abilities[i].ability.name.slice(1);
-            abilities.push(ability);    
+            abilities.push(pokemonJSON.abilities[i].ability.name);    
         }
         
         var sprite = pokemonJSON.sprites.front_default;
@@ -68,23 +68,11 @@ function makePokemon(pokemonJSON, team) {
 
 function writeToTeam(pokemon) {
     
-    makeCollapsibleCard(pokemon);
+    makeTab(pokemon);
+    makeTabContent(pokemon);
     
 }
 
-function drawSprite(pokemon) {
-    let teamCol = document.createElement('div')
-    teamCol.classList.add('col-sm-2');
-    let cardButton = makeCardButton(pokemon)
-    let pokemonImage = document.createElement('img');
-    pokemonImage.src = pokemon.sprite;
-    pokemonImage.style.transform = 'scale(2.5)';
-    pokemonImage.classList.add('img-fluid');
-    cardButton.appendChild(pokemonImage);
-    teamCol.appendChild(cardButton);;
-    
-    document.getElementById('team').appendChild(teamCol);
-}
 
 function makeNavCard(pokemon) {
 
@@ -94,61 +82,44 @@ function makeNavCard(pokemon) {
 
     let cardBody = document.createElement('div');
     cardBody.classList.add('card-body');
+
     
     let cardHeader = document.createElement('h2');
     cardHeader.classList.add('card-titlle');
     cardHeader.innerHTML = pokemon.name;
+    cardBody.appendChild(cardHeader);
 
     //make a list group with with stats of pokemon
     let listGroup = document.createElement('ul');
     listGroup.classList.add('list-group');
     listGroup.classList.add('list-group-flush');
     let hpLI = document.createElement('li');
-    hpLI.innerHTML = pokemon.stats['hp'];
+    hpLI.innerHTML = 'hp: ' + pokemon.stats['hp'];
     let defLI = document.createElement('li');
-    defLI.innerHTML = pokemon.stats['defense'];
+    defLI.innerHTML = 'def: ' + pokemon.stats['defense'];
     let atkLI = document.createElement('li');
-    atkLI.innerHTML = pokemon.stats['attack'];
-    let listItems = [hpLI, defLI, atkLI];
+    atkLI.innerHTML = 'atk: ' + pokemon.stats['attack'];
+    let abilitiesLI = document.createElement('li');
+    abilitiesLI.innerHTML = 'abilities: ';
+    for(var i = 0; i < pokemon.abilities.length; i++) {
+        abilitiesLI.innerHTML+= pokemon.abilities[i];
+        if(i < pokemon.abilities.length-1)
+            abilitiesLI.innerHTML += ', ';
+    }
+    let listItems = [hpLI, defLI, atkLI, abilitiesLI];
 
     for(var i = 0; i < listItems.length; i++) {
         listItems[i].classList.add('list-group-item');
         listGroup.appendChild(listItems[i]);
     }
 
-    document.getElementById('pokemon-accordion').appendChild(card);
+    cardBody.appendChild(listGroup);
+    card.appendChild(cardBody);
+    return card;
+
 }
 
 
-function makeCardButton(pokemon) {
-
-    //make div with class card header and id of pokemon + id
-    let cardHeader = document.createElement('div');
-    cardHeader.classList.add('card-header');
-    cardHeader.setAttribute('id', 'pokemon'+pokemon.id);
-    //header 
-    let header = document.createElement('h5');
-    header.classList.add('mb-0');
-
-    //button.btn.btn-link type = button data-toggle =collapse data-target=#pokemonname aria expanded = false ariacontrols=pokemonname
-    let cardButton = document.createElement('img');
-    cardButton.src = pokemon.sprite;
-    cardButton.classList.add('btn');
-    
-    cardButton.setAttribute('type', 'button');
-    cardButton.setAttribute('data-toggle', 'collapse');
-    cardButton.setAttribute('data-target', '#' + (pokemon.name).toLowerCase());
-    cardButton.setAttribute('role', 'button');
-    cardButton.setAttribute('aria-expanded', 'false');
-    cardButton.setAttribute('aria-controls', (pokemon.name).toLowerCase());
-    //append button to header
-    cardButton.innerHTML = 'HELLO WORLD';
-    header.appendChild(cardButton);
-    //append header to header div
-    cardHeader.appendChild(header);
-    //append div to card HAPPENS OUTSIDE OF FUNCTION
-    return cardHeader;
-}
 
 
 function makeTab(pokemon) {
@@ -168,6 +139,7 @@ function makeTab(pokemon) {
 
     anchor.appendChild(tabImage);
     navItem.appendChild(anchor);
+    document.getElementById('pokemon-tabs').appendChild(navItem);
 }
 
 function makeTabContent(pokemon) {
@@ -175,7 +147,10 @@ function makeTabContent(pokemon) {
     tabPane.classList.add('tab-pane', 'fade');
     tabPane.setAttribute('id', (pokemon.name).toLowerCase());
     tabPane.setAttribute('role', 'tabpanel');
-    tabPane.setAttribute('aria-labelledby' (pokemon.name).toLowerCase()+'-tab');
+    tabPane.setAttribute('aria-labelledby', (pokemon.name).toLowerCase()+'-tab');
+
+    tabPane.appendChild(makeNavCard(pokemon));
+    document.getElementById('pokemon-tab-content').appendChild(tabPane);
 
 
 }
