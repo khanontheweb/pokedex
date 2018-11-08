@@ -67,23 +67,39 @@ function makePokemon(pokemonJSON, team) {
 }
 
 function writeToTeam(pokemon) {
-    drawSprite(pokemon.sprite)
+    drawSprite(pokemon);
+    makeCollapsibleCard(pokemon);
+    
 }
 
-function drawSprite() {
+function drawSprite(pokemon) {
     let teamCol = document.createElement('div')
     teamCol.classList.add('col-sm-2');
+    let cardButton = makeCardButton(pokemon)
     let pokemon = document.createElement('img');
-    pokemon.src = sprite;
-    pokemon.style.transform = 'scale(2.5)';
-    pokemon.classList.add('img-fluid');
-    teamCol.appendChild(pokemon);
+    this.pokemon.src = sprite;
+    this.pokemon.style.transform = 'scale(2.5)';
+    this.pokemon.classList.add('img-fluid');
+    cardButton.appendChild(this.pokemon);
+    teamCol.appendChild(cardButton);;
     
     document.getElementById('team').appendChild(teamCol);
 }
 
-function makeCollapsibleCard() {
+function makeCollapsibleCard(pokemon) {
+    //makes the collapsible card
+}
 
+
+function makeCardButton(pokemon) {
+    let cardButton = document.createElement('a');
+    cardButton.classList.add('btn');
+    cardButton.setAttribute('data-toggle', 'collapse');
+    cardButton.setAttribute('href', pokemon.name);
+    cardButton.setAttribute('role', 'button');
+    cardButton.setAttribute('aria-expanded', 'false');
+    cardButton.setAttribute('aria-controls', pokemon.name);
+    return cardButton;
 }
 
 
