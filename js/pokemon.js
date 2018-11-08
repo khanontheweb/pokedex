@@ -62,18 +62,28 @@ function makePokemon(pokemonJSON, team) {
             attack: pokemonJSON.stats[4].base_stat,
             hp: pokemonJSON.stats[5].base_stat
             };
-        new Pokemon(id, name, abilities, sprite, stats, team);
-        writeToTeam(sprite);
+        let pokemon = new Pokemon(id, name, abilities, sprite, stats, team);
+        writeToTeam(pokemon);
 }
 
-function writeToTeam(sprite) {
+function writeToTeam(pokemon) {
+    drawSprite(pokemon.sprite)
+}
+
+function drawSprite() {
     let teamCol = document.createElement('div')
-    teamCol.classList.add('col-sm-4');
+    teamCol.classList.add('col-sm-2');
     let pokemon = document.createElement('img');
     pokemon.src = sprite;
+    pokemon.style.transform = 'scale(2.5)';
     pokemon.classList.add('img-fluid');
     teamCol.appendChild(pokemon);
+    
     document.getElementById('team').appendChild(teamCol);
+}
+
+function makeCollapsibleCard() {
+
 }
 
 

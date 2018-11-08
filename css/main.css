@@ -141,10 +141,12 @@ nav ul {
   opacity: 0;
   width: 50%;
   margin-left: 25%;
+  margin-bottom: 1%;
 }
 
 #team img {
   margin-left: 38%;
+  margin-bottom: 5%;
 }
 
 /*# sourceMappingURL=main.css.map */
