@@ -67,7 +67,7 @@ function makePokemon(pokemonJSON, team) {
 }
 
 function writeToTeam(pokemon) {
-    drawSprite(pokemon);
+    
     makeCollapsibleCard(pokemon);
     
 }
@@ -87,16 +87,13 @@ function drawSprite(pokemon) {
 }
 
 function makeCollapsibleCard(pokemon) {
-    //make the collapse with the id of the pokemon
-    let cardContainer = document.createElement('div');
-    //cardContainer.classList.add('collapse');
-    cardContainer.classList.add('col-sm-12')
-    cardContainer.setAttribute('id', (pokemon.name).toLowerCase());
 
     //make the card container
     let card = document.createElement('div');
     card.classList.add('card');
-    //append the card to the collapse
+
+    //add the card header to the card 
+    card.appendChild(makeCardButton(pokemon));
     
 
     //make the card image
@@ -106,16 +103,18 @@ function makeCollapsibleCard(pokemon) {
     //append the image to the card
     card.appendChild(cardImage);*/
 
-
-    //make div child with card body with pokemon name header
+    let collapsiblePokemon = document.createElement('div');
+    collapsiblePokemon.setAttribute('id', (pokemon.name).toLowerCase());
+    collapsiblePokemon.classList.add('collapse');
+    collapsiblePokemon.setAttribute('aria-labelledby', 'pokemon'+pokemon.id);
+    collapsiblePokemon.setAttribute('data-parent', '#pokemon-accordion');
+    //make div child with card body 
     let cardBody = document.createElement('div');
     cardBody.classList.add('card-body');
-
-    let cardHeader = document.createElement('h5');
-    cardHeader.classList.add('card-title')
-    let headerText = document.createTextNode(pokemon.name);
-    cardHeader.appendChild(headerText);
     
+    cardBody.innerHTML = 'hello world pt2 electric boogaloo';
+    collapsiblePokemon.appendChild(cardBody);
+    card.appendChild(collapsiblePokemon);
 
     //make a list group with with stats of pokemon
     let listGroup = document.createElement('ul');
@@ -134,27 +133,37 @@ function makeCollapsibleCard(pokemon) {
         listGroup.appendChild(listItems[i]);
     }
 
-    cardContainer.appendChild(card);
-    card.appendChild(cardBody);
-    cardBody.appendChild(cardHeader);
-    cardBody.appendChild(listGroup);
-
-    document.getElementById('cards').appendChild(cardContainer);
-
-    
+    document.getElementById('pokemon-accordion').appendChild(card);
 }
 
 
 function makeCardButton(pokemon) {
-    let cardButton = document.createElement('a');
+
+    //make div with class card header and id of pokemon + id
+    let cardHeader = document.createElement('div');
+    cardHeader.classList.add('card-header');
+    cardHeader.setAttribute('id', 'pokemon'+pokemon.id);
+    //header 
+    let header = document.createElement('h5');
+    header.classList.add('mb-0');
+
+    //button.btn.btn-link type = button data-toggle =collapse data-target=#pokemonname aria expanded = false ariacontrols=pokemonname
+    let cardButton = document.createElement('button');
     cardButton.classList.add('btn');
-    cardButton.classList.add('btn-primary');
+    cardButton.classList.add('btn-link');
+    cardButton.setAttribute('type', 'button');
     cardButton.setAttribute('data-toggle', 'collapse');
-    cardButton.setAttribute('href', '#' + (pokemon.name).toLowerCase());
+    cardButton.setAttribute('data-target', '#' + (pokemon.name).toLowerCase());
     cardButton.setAttribute('role', 'button');
     cardButton.setAttribute('aria-expanded', 'false');
-    cardButton.setAttribute('aria-controls', pokemon.name);
-    return cardButton;
+    cardButton.setAttribute('aria-controls', (pokemon.name).toLowerCase());
+    //append button to header
+    cardButton.innerHTML = 'HELLO WORLD';
+    header.appendChild(cardButton);
+    //append header to header div
+    cardHeader.appendChild(header);
+    //append div to card HAPPENS OUTSIDE OF FUNCTION
+    return cardHeader;
 }
 
 
