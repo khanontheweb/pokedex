@@ -49,6 +49,17 @@ nav {
     }
 }
 
+.card-body {
+    img {
+        transform: scale(.25);
+        margin: -45%;
+        pointer-events :none;
+        float: right;
+        z-index: 1000;
+        position:relative;
+    }
+}
+
 
 
 

@@ -153,4 +153,13 @@ nav ul {
   margin: auto;
 }
 
+.card-body img {
+  transform: scale(0.25);
+  margin: -45%;
+  pointer-events: none;
+  float: right;
+  z-index: 1000;
+  position: relative;
+}
+
 /*# sourceMappingURL=main.css.map */
