@@ -5,30 +5,12 @@ class Pokemon {
     this.abilities = abilities;
     this.sprite = sprite;
     this.stats = stats;
+    //this.type = type;
     if(this != undefined)
         team.push(this);
 
     }
 
-    abilitiesToArray(arr) {
-        for(var i = 0; i < this.abilities.length; i++) {
-            let xhr = new XMLHttpRequest;
-            let string = this.abilities[i].url;
-            xhr.open('GET', string, true);
-            var abilityName = this.abilities[i].ability.name;
-            xhr.onload = function() {
-                if(this.status == 200 && this.readyState ==4) {
-                    var abilityJSON = JSON.parse(this.responseText);
-                    var abilityDescription = abilityJSON.effect_entries.effect;
-                    var ability = {
-                        name: abilityName,
-                        description:abilityDescription
-                    };
-                    arr.push(ability);
-                }
-            }
-        }
-    }
 }
 
 function makeAJAXCallPokemon(id, team) {
@@ -52,11 +34,14 @@ function makePokemon(pokemonJSON, team) {
         var id = pokemonJSON.id;
         var name = pokemonJSON.name.charAt(0).toUpperCase() + pokemonJSON.name.slice(1);
         var abilities = []; 
+        var types = [];
         for(var i = 0; i< pokemonJSON.abilities.length; i++) {
             abilities.push(pokemonJSON.abilities[i].ability.name);    
         }
+
         
-        var sprite = pokemonJSON.sprites.front_default;
+        
+        var sprite = 'http://pokestadium.com/sprites/xy/' + name.toLowerCase() + '.gif';
         var stats = {
             defense: pokemonJSON.stats[3].base_stat,
             attack: pokemonJSON.stats[4].base_stat,
@@ -90,6 +75,7 @@ function makeNavCard(pokemon) {
     cardImg.classList.add('card-img-bottom');
     cardImg.style.transform = 'scale(.25)';
     cardImg.style.margin ='-39%';
+    cardImg.style.pointerEvents = 'none';
 
 
     let cardBody = document.createElement('div');
@@ -147,6 +133,7 @@ function makeTab(pokemon) {
 
     let tabImage = document.createElement('img');
     tabImage.src = pokemon.sprite;
+    
 
     navItem.appendChild(tabImage);
     document.getElementById('pokemon-tabs').appendChild(navItem);
