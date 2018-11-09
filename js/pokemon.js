@@ -74,9 +74,11 @@ function makeNavCard(pokemon) {
     cardImg.src = 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/' + pokemonIDString + '.png';
     cardImg.classList.add('card-img-bottom');
     cardImg.style.transform = 'scale(.25)';
-    cardImg.style.margin ='-39%';
+    cardImg.style.margin ='-45%';
     cardImg.style.pointerEvents = 'none';
-    //cardImg.style.cssFloat = 'right';
+    cardImg.style.cssFloat = 'right';
+    cardImg.style.zIndex = '1000';
+    cardImg.style.position = 'relative';
 
     let cardBody = document.createElement('div');
     cardBody.classList.add('card-body');
