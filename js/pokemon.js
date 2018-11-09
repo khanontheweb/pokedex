@@ -32,9 +32,9 @@ class Pokemon {
 }
 
 function makeAJAXCallPokemon(id, team) {
-
+    let idNum = parseInt(id);
     let xhr = new XMLHttpRequest();
-    var string = 'http://fizal.me/pokeapi/api/v2/id/' + id + '.json'
+    var string = 'http://fizal.me/pokeapi/api/v2/id/' + idNum + '.json'
    
     xhr.onreadystatechange = function() {
     if(this.status == 200 && this.readyState == 4) {
@@ -80,14 +80,27 @@ function makeNavCard(pokemon) {
     let card = document.createElement('div');
     card.classList.add('card');
 
+    let cardImg = document.createElement('img');
+    let pokemonIDString = pokemon.id;
+    if (pokemonIDString < 100)
+        pokemonIDString = '0' + pokemonIDString;
+    else if(pokemonIDString < 10)
+        pokemonIDString = '00' + pokemonIDString;
+    cardImg.src = 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/' + pokemonIDString + '.png';
+    cardImg.classList.add('card-img-bottom');
+    cardImg.style.transform = 'scale(.25)';
+    cardImg.style.margin ='-39%';
+
+
     let cardBody = document.createElement('div');
     cardBody.classList.add('card-body');
 
     
-    let cardHeader = document.createElement('h2');
+    let cardHeader = document.createElement('h1');
     cardHeader.classList.add('card-titlle');
     cardHeader.innerHTML = pokemon.name;
     cardBody.appendChild(cardHeader);
+    cardBody.appendChild(cardImg);
 
     //make a list group with with stats of pokemon
     let listGroup = document.createElement('ul');
@@ -123,22 +136,19 @@ function makeNavCard(pokemon) {
 
 
 function makeTab(pokemon) {
-    let navItem = document.createElement('li');
-    navItem.classList.add('nav-item');
+    let navItem = document.createElement('a');
+    navItem.classList.add('list-group-item', 'list-group-item-action');
 
-    let anchor = document.createElement('a');
-    anchor.classList.add('nav-link');
-    anchor.setAttribute('id', (pokemon.name).toLowerCase()+'-tab');
-    anchor.setAttribute('data-toggle', 'tab');
-    anchor.setAttribute('href', '#'+(pokemon.name).toLowerCase());
-    anchor.setAttribute('role', 'tab');
-    anchor.setAttribute('aria-selected', 'true');
+    navItem.setAttribute('id', (pokemon.name).toLowerCase()+'-list');
+    navItem.setAttribute('data-toggle', 'list');
+    navItem.setAttribute('href', '#'+(pokemon.name).toLowerCase());
+    navItem.setAttribute('role', 'tab');
+    navItem.setAttribute('aria-controls', (pokemon.name).toLowerCase());
 
     let tabImage = document.createElement('img');
     tabImage.src = pokemon.sprite;
 
-    anchor.appendChild(tabImage);
-    navItem.appendChild(anchor);
+    navItem.appendChild(tabImage);
     document.getElementById('pokemon-tabs').appendChild(navItem);
 }
 
@@ -147,7 +157,7 @@ function makeTabContent(pokemon) {
     tabPane.classList.add('tab-pane', 'fade');
     tabPane.setAttribute('id', (pokemon.name).toLowerCase());
     tabPane.setAttribute('role', 'tabpanel');
-    tabPane.setAttribute('aria-labelledby', (pokemon.name).toLowerCase()+'-tab');
+    tabPane.setAttribute('aria-labelledby', (pokemon.name).toLowerCase()+'-list');
 
     tabPane.appendChild(makeNavCard(pokemon));
     document.getElementById('pokemon-tab-content').appendChild(tabPane);

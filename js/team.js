@@ -5,4 +5,3 @@ makeAJAXCallPokemon(292, momo.team);
 
 
 
-
