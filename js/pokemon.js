@@ -29,6 +29,22 @@ function makeAJAXCallPokemon(id, team) {
     xhr.send();
 }
 
+function makeAJAXCallMoves(pokemonJSON) {
+    
+
+    //make 4 ajax calls one for each move and make a move object
+    var string = 'http://fizal.me/pokeapi/api/v2/id/' + idNum + '.json'
+    xhr.onreadystatechange = function() {
+        if(this.status == 200 && this.readyState == 4) {  
+        }
+            
+    };
+    xhr.open('GET', string , true);
+    xhr.send();
+}
+
+
+
 function makePokemon(pokemonJSON, team) {
         console.log(pokemonJSON);
         var id = pokemonJSON.id;
@@ -47,6 +63,19 @@ function makePokemon(pokemonJSON, team) {
             attack: pokemonJSON.stats[4].base_stat,
             hp: pokemonJSON.stats[5].base_stat
             };
+
+        let moves = pokemonJSON.moves;
+        var moveArr = [];
+        var i = 0;
+        while(i < 3) {
+            let randMove = moves[Math.floor(Math.random() * moves.length)];
+            if(!moveArr.includes(randMove)) {
+                moveArr.push(randMove);
+                i++;
+                }
+            }
+       // makeAJAXCallMoves(moveArr);
+        //makeAJAXCallFlavorText(id);    
         let pokemon = new Pokemon(id, name, abilities, sprite, stats, team);
         writeToTeam(pokemon);
 }
@@ -71,9 +100,8 @@ function makeNavCard(pokemon) {
         pokemonIDString = '0' + pokemonIDString;
     else if(pokemonIDString < 10)
         pokemonIDString = '00' + pokemonIDString;
-    cardImg.src = 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/' + pokemonIDString + '.png';
+    cardImg.src = 'http://www.pokestadium.com/assets/img/sprites/official-art/' + pokemon.name.toLowerCase() + '.png';
     cardImg.classList.add('card-img-bottom');
-  
 
     let cardBody = document.createElement('div');
     cardBody.classList.add('card-body');
