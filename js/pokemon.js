@@ -76,7 +76,7 @@ function makeNavCard(pokemon) {
     cardImg.style.transform = 'scale(.25)';
     cardImg.style.margin ='-39%';
     cardImg.style.pointerEvents = 'none';
-
+    //cardImg.style.cssFloat = 'right';
 
     let cardBody = document.createElement('div');
     cardBody.classList.add('card-body');
@@ -133,6 +133,7 @@ function makeTab(pokemon) {
 
     let tabImage = document.createElement('img');
     tabImage.src = pokemon.sprite;
+
     
 
     navItem.appendChild(tabImage);
