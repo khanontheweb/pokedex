@@ -148,6 +148,8 @@ function makeNavCard(pokemon) {
 
 function makeTab(pokemon) {
     let navItem = document.createElement('a');
+    let pokemonCry = document.createElement('audio');
+    //pokemonCry.src = 
     navItem.classList.add('list-group-item', 'list-group-item-action');
 
     navItem.setAttribute('id', (pokemon.name).toLowerCase()+'-list');
