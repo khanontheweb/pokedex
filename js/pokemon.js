@@ -16,7 +16,7 @@ class Pokemon {
 function makeAJAXCallPokemon(id, team) {
     let idNum = parseInt(id);
     let xhr = new XMLHttpRequest();
-    var string = 'http://fizal.me/pokeapi/api/v2/id/' + idNum + '.json'
+    var string = 'https://fizal.me/pokeapi/api/v2/id/' + idNum + '.json'
    
     xhr.onreadystatechange = function() {
     if(this.status == 200 && this.readyState == 4) {
@@ -125,6 +125,19 @@ function makeNavCard(pokemon) {
     atkLI.innerHTML = 'atk: ' + pokemon.stats['attack'];
     let abilitiesLI = document.createElement('li');
     abilitiesLI.innerHTML = 'abilities: ';
+    
+    let barGraph = document.createElement('div');
+    barGraph.classList.add('graph-cont');
+    let hpBar = document.createElement('div');
+    hpBar.classList.add('bar', 'hpBar');
+    hpBar.a
+    let defBar = document.createElement('div');
+    defBar.classList.add('bar', 'defBar');
+    let atkBar = document.createElement('div');
+    atkBar.classList.add('bar', 'atkBar');
+
+
+
     for(var i = 0; i < pokemon.abilities.length; i++) {
         abilitiesLI.innerHTML+= pokemon.abilities[i];
         if(i < pokemon.abilities.length-1)
