@@ -153,9 +153,13 @@ nav ul {
   margin: auto;
 }
 
+.card-body {
+  width: 95%;
+}
 .card-body img {
   transform: scale(0.25);
-  margin: -45%;
+  margin: -47%;
+  padding-top: 7%;
   pointer-events: none;
   float: right;
   z-index: 1000;

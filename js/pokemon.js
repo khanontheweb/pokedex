@@ -103,6 +103,7 @@ function makeNavCard(pokemon) {
     cardImg.src = 'http://www.pokestadium.com/assets/img/sprites/official-art/' + pokemon.name.toLowerCase() + '.png';
     cardImg.classList.add('card-img-bottom');
 
+
     let cardBody = document.createElement('div');
     cardBody.classList.add('card-body');
 
