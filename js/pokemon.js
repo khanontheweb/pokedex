@@ -125,32 +125,35 @@ function makeNavCard(pokemon) {
     atkLI.innerHTML = 'atk: ' + pokemon.stats['attack'];
     let abilitiesLI = document.createElement('li');
     abilitiesLI.innerHTML = 'abilities: ';
+    abilitiesLI.classList.add('border-bottom-0')
     
-    let barGraph = document.createElement('div');
-    barGraph.classList.add('graph-cont');
-    let hpBar = document.createElement('div');
-    hpBar.classList.add('bar', 'hpBar');
-    hpBar.a
-    let defBar = document.createElement('div');
-    defBar.classList.add('bar', 'defBar');
-    let atkBar = document.createElement('div');
-    atkBar.classList.add('bar', 'atkBar');
-
-
-
     for(var i = 0; i < pokemon.abilities.length; i++) {
         abilitiesLI.innerHTML+= pokemon.abilities[i];
         if(i < pokemon.abilities.length-1)
             abilitiesLI.innerHTML += ', ';
     }
-    let listItems = [hpLI, defLI, atkLI, abilitiesLI];
+
+    let listItems = [hpLI, atkLI, defLI, abilitiesLI];
 
     for(var i = 0; i < listItems.length; i++) {
         listItems[i].classList.add('list-group-item');
         listGroup.appendChild(listItems[i]);
     }
 
+    let hpBar = makeBars(pokemon.stats['hp']);
+    hpBar.childNodes[0].classList.add('bg-danger');
+    let defBar = makeBars(pokemon.stats['defense']);
+    defBar.childNodes[0].classList.add('bg-success');
+    let atkBar = makeBars(pokemon.stats['attack']);
+    atkBar.childNodes[0].classList.add('bg-warning');
+    
+    
+    
+
     cardBody.appendChild(listGroup);
+    cardBody.appendChild(hpBar);
+    cardBody.appendChild(atkBar);
+    cardBody.appendChild(defBar);
     card.appendChild(cardBody);
     return card;
 
@@ -190,6 +193,29 @@ function makeTabContent(pokemon) {
     tabPane.appendChild(makeNavCard(pokemon));
     document.getElementById('pokemon-tab-content').appendChild(tabPane);
 
+
+}
+
+function makeBars(stat) {
+    let progressWrapper = document.createElement('div');
+    progressWrapper.classList.add('progress');
+    progressWrapper.style.height = '25px';
+
+    let progressBar = document.createElement('div');
+    progressBar.classList.add('progress-bar')
+    progressBar.classList.add('text-light');
+    progressBar.setAttribute('role', 'progressbar');
+    progressBar.setAttribute('aria-valuenow', stat.toString());
+    progressBar.setAttribute('aria-valuemin', '0');
+    progressBar.setAttribute('aria-valuemax', '255');
+
+    let width = (stat/255)*100;
+    progressBar.style.width = width.toString() + '%';
+    progressBar.innerHTML = stat.toString();
+    
+
+    progressWrapper.appendChild(progressBar);
+    return progressWrapper;
 
 }
 

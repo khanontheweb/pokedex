@@ -1,5 +1,7 @@
 @import '_animations';
 
+$graph-margin: 1%;
+
 body {
     margin: 0;
     padding: 0;
@@ -58,6 +60,11 @@ nav {
         z-index: 1000;
         position:relative;
     }
+}
+
+
+.progress {
+    margin-bottom: $graph-margin;
 }
 
 
