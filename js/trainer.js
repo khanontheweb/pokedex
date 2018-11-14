@@ -10,12 +10,10 @@ class Trainer {
   
     get(pokemonName) {
         for(var i = 0; i < this.team.length; i++) {
-            if(this.team[i].name === pokemonName)
+            if((this.team[i].name).toLowerCase() === pokemonName)
                 return this.team[i];
         }
     }
   
-    addPokemon(pokemon) {
-        this.team.push(pokemon);
-    }
+  
 }

@@ -67,8 +67,11 @@ function makePokemon(pokemonJSON, team) {
         }
 
         
+        if(pokemonJSON.id <= 721)
+            var sprite = 'http://pokestadium.com/sprites/xy/' + name.toLowerCase() + '.gif';
+        else
+            var sprite = pokemonJSON.sprites.front_default;
         
-        var sprite = 'http://pokestadium.com/sprites/xy/' + name.toLowerCase() + '.gif';
         var stats = {
             defense: pokemonJSON.stats[3].base_stat,
             attack: pokemonJSON.stats[4].base_stat,
@@ -111,7 +114,7 @@ function makeNavCard(pokemon) {
         pokemonIDString = '0' + pokemonIDString;
     else if(pokemonIDString < 10)
         pokemonIDString = '00' + pokemonIDString;
-    cardImg.src = 'http://www.pokestadium.com/assets/img/sprites/official-art/' + pokemon.name.toLowerCase() + '.png';
+    cardImg.src = 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/' + pokemon.id + '.png';
     cardImg.classList.add('card-img-bottom');
 
 
