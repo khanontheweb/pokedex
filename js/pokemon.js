@@ -1,5 +1,7 @@
+var refia = new Trainer('Refia');
+
 class Pokemon {
-    constructor(id, name, abilities, sprite, stats, team) {
+    constructor(id, name, abilities, sprite, stats) {
     this.id = id;
     this.name =  name;
     this.abilities = abilities;
@@ -7,21 +9,30 @@ class Pokemon {
     this.stats = stats;
     //this.type = type;
     if(this != undefined)
-        team.push(this);
+        refia.team.push(this);
 
     }
 
 }
 
-function makeAJAXCallPokemon(id, team) {
+function makeAJAXCallPokemon(id) {
+
     let idNum = parseInt(id);
+    if(isNaN(idNum))
+        var string = 'https://fizal.me/pokeapi/api/v2/name/' + id + '.json';
+    else if(typeof(idNum) == 'number')
+        var string = 'https://fizal.me/pokeapi/api/v2/id/' + idNum + '.json';
+    else
+        alert("Not a valid pokemon name or id");
+    
+    document.getElementById('pokemonSearch').value = '';
     let xhr = new XMLHttpRequest();
-    var string = 'https://fizal.me/pokeapi/api/v2/id/' + idNum + '.json'
+    
    
     xhr.onreadystatechange = function() {
     if(this.status == 200 && this.readyState == 4) {
         var pokemonJSON = JSON.parse(this.responseText);
-        makePokemon(pokemonJSON, team);
+        makePokemon(pokemonJSON, refia);
         }
         
     };
@@ -76,7 +87,7 @@ function makePokemon(pokemonJSON, team) {
             }
        // makeAJAXCallMoves(moveArr);
         //makeAJAXCallFlavorText(id);    
-        let pokemon = new Pokemon(id, name, abilities, sprite, stats, team);
+        let pokemon = new Pokemon(id, name, abilities, sprite, stats);
         writeToTeam(pokemon);
 }
 
@@ -149,7 +160,7 @@ function makeNavCard(pokemon) {
     atkBar.childNodes[0].classList.add('bg-warning');
     
     
-    
+
 
     cardBody.appendChild(listGroup);
     cardBody.appendChild(hpBar);
@@ -165,8 +176,11 @@ function makeNavCard(pokemon) {
 
 function makeTab(pokemon) {
     let navItem = document.createElement('a');
-    let pokemonCry = document.createElement('audio');
-    //pokemonCry.src = 
+
+    let audio = document.createElement('audio');
+    audio.src = 'cries/' + pokemon.id + '.ogg';
+    audio.setAttribute('id', 'cry-' + pokemon.id);
+
     navItem.classList.add('list-group-item', 'list-group-item-action');
 
     navItem.setAttribute('id', (pokemon.name).toLowerCase()+'-list');
@@ -179,8 +193,12 @@ function makeTab(pokemon) {
     tabImage.src = pokemon.sprite;
 
     
-
+    navItem.addEventListener('click', function() {
+        let cry = document.getElementById('cry-' + pokemon.id);
+        cry.play();
+    });
     navItem.appendChild(tabImage);
+    navItem.appendChild(audio);
     document.getElementById('pokemon-tabs').appendChild(navItem);
 }
 

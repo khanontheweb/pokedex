@@ -143,9 +143,7 @@ nav ul {
   -o-animation-dealy: 1s;
   animation-delay: 1s;
   opacity: 0;
-  width: 50%;
-  margin-left: 25%;
-  margin-bottom: 1%;
+  width: 20%;
 }
 
 .list-group-item img {
