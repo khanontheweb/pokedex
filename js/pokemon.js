@@ -19,7 +19,7 @@ function makeAJAXCallPokemon(id) {
 
     let idNum = parseInt(id);
     if(isNaN(idNum))
-        var string = 'https://fizal.me/pokeapi/api/v2/name/' + id + '.json';
+        var string = 'https://fizal.me/pokeapi/api/v2/name/' + id.toLowerCase()  + '.json';
     else if(typeof(idNum) == 'number')
         var string = 'https://fizal.me/pokeapi/api/v2/id/' + idNum + '.json';
     else
