@@ -1,7 +1,7 @@
 var refia = new Trainer('Refia');
 
 class Pokemon {
-    constructor(id, name, abilities, sprite, stats) {
+    constructor(id, name, abilities, sprite, stats,trainer) {
     this.id = id;
     this.name =  name;
     this.abilities = abilities;
@@ -9,13 +9,13 @@ class Pokemon {
     this.stats = stats;
     //this.type = type;
     if(this != undefined)
-        refia.team.push(this);
+        trainer.team.push(this);
 
     }
 
 }
 
-function makeAJAXCallPokemon(id) {
+function makeAJAXCallPokemon(id, trainer) {
 
     let idNum = parseInt(id);
     if(isNaN(idNum))
@@ -32,7 +32,7 @@ function makeAJAXCallPokemon(id) {
     xhr.onreadystatechange = function() {
     if(this.status == 200 && this.readyState == 4) {
         var pokemonJSON = JSON.parse(this.responseText);
-        makePokemon(pokemonJSON, refia);
+        makePokemon(pokemonJSON, trainer);
         }
         
     };
@@ -56,7 +56,7 @@ function makeAJAXCallMoves(pokemonJSON) {
 
 
 
-function makePokemon(pokemonJSON, team) {
+function makePokemon(pokemonJSON, trainer) {
         console.log(pokemonJSON);
         var id = pokemonJSON.id;
         var name = pokemonJSON.name.charAt(0).toUpperCase() + pokemonJSON.name.slice(1);
@@ -90,19 +90,19 @@ function makePokemon(pokemonJSON, team) {
             }
        // makeAJAXCallMoves(moveArr);
         //makeAJAXCallFlavorText(id);    
-        let pokemon = new Pokemon(id, name, abilities, sprite, stats);
-        writeToTeam(pokemon);
+        let pokemon = new Pokemon(id, name, abilities, sprite, stats,trainer);
+        writeToTeam(pokemon,trainer);
 }
 
-function writeToTeam(pokemon) {
+function writeToTeam(pokemon, trainer) {
     
-    makeTab(pokemon);
-    makeTabContent(pokemon);
+    makeTab(pokemon,trainer);
+    makeTabContent(pokemon,trainer);
     
 }
 
 
-function makeNavCard(pokemon) {
+function makeNavCard(pokemon,trainer) {
 
     //make the card container
     let card = document.createElement('div');
@@ -177,7 +177,7 @@ function makeNavCard(pokemon) {
 
 
 
-function makeTab(pokemon) {
+function makeTab(pokemon,trainer) {
     let navItem = document.createElement('a');
 
     let audio = document.createElement('audio');
@@ -202,10 +202,10 @@ function makeTab(pokemon) {
     });
     navItem.appendChild(tabImage);
     navItem.appendChild(audio);
-    document.getElementById('pokemon-tabs').appendChild(navItem);
+    document.getElementById(trainer.name+'-pokemon-tabs').appendChild(navItem);
 }
 
-function makeTabContent(pokemon) {
+function makeTabContent(pokemon,trainer) {
     let tabPane = document.createElement('div');
     tabPane.classList.add('tab-pane', 'fade');
     tabPane.setAttribute('id', (pokemon.name).toLowerCase());
@@ -213,7 +213,7 @@ function makeTabContent(pokemon) {
     tabPane.setAttribute('aria-labelledby', (pokemon.name).toLowerCase()+'-list');
 
     tabPane.appendChild(makeNavCard(pokemon));
-    document.getElementById('pokemon-tab-content').appendChild(tabPane);
+    document.getElementById(trainer.name+'-pokemon-tab-content').appendChild(tabPane);
 
 
 }
