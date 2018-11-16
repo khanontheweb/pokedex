@@ -1,7 +1,13 @@
-let momo = new Trainer("momo", "https://i.pinimg.com/originals/48/0e/71/480e717122aa38ac1f798824694a9abc.jpg");
-momo.makeTrainerTab();
-momo.makeTrainerTabContent();
+let momo = new Trainer("momo", "img/pokemon_sprites_01.png");
+momo.renderTrainer();
+
+let bree = new Trainer("bree", "img/pokemon_sprites_02.png");
+bree.renderTrainer();
 
 makeAJAXCallPokemon(289, momo);
 makeAJAXCallPokemon('wooper',momo);
 makeAJAXCallPokemon('shedinja', momo);  
+
+makeAJAXCallPokemon('gastly', bree);
+makeAJAXCallPokemon('clefairy', bree);
+makeAJAXCallPokemon('aggron', bree);  

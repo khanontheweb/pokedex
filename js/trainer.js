@@ -28,7 +28,7 @@ class Trainer {
 
         let tabImage = document.createElement('img');
         tabImage.src = this.sprite;
-        tabImage.style.width = '10%';
+        //tabImage.style.width = '10%';
 
         navItem.appendChild(tabImage);
         document.getElementById('trainer-tabs').appendChild(navItem);
@@ -52,6 +52,11 @@ class Trainer {
             innerRow.appendChild(listGroup);
             innerRow.appendChild(listGroupContent);
             tabPane.appendChild(innerRow);
+    }
+
+    renderTrainer() {
+        this.makeTrainerTab()
+        this.makeTrainerTabContent();
     }
 
 }   
