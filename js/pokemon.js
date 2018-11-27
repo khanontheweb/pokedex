@@ -1,4 +1,4 @@
-var refia = new Trainer('Refia');
+
 
 class Pokemon {
     constructor(id, name, abilities, sprite, stats,trainer) {
@@ -102,7 +102,7 @@ function writeToTeam(pokemon, trainer) {
 }
 
 
-function makeNavCard(pokemon,trainer) {
+function makeNavCard(pokemon) {
 
     //make the card container
     let card = document.createElement('div');
@@ -114,7 +114,7 @@ function makeNavCard(pokemon,trainer) {
         pokemonIDString = '0' + pokemonIDString;
     else if(pokemonIDString < 10)
         pokemonIDString = '00' + pokemonIDString;
-    cardImg.src = 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/' + pokemon.id + '.png';
+    cardImg.src = 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/' + pokemonIDString + '.png';
     cardImg.classList.add('card-img-bottom');
 
 
