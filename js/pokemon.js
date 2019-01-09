@@ -114,7 +114,7 @@ function makeNavCard(pokemon) {
         pokemonIDString = '0' + pokemonIDString;
     else if(pokemonIDString < 10)
         pokemonIDString = '00' + pokemonIDString;
-    cardImg.src = 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/' + pokemon.id + '.png';
+    cardImg.src = 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/' + pokemonIDString + '.png';
     cardImg.classList.add('card-img-bottom');
 
 
