@@ -1,4 +1,4 @@
-# Pokdex
+# Pokedex
 
 ## Technologies Used
 
